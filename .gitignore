@@ -1,0 +1,6 @@
+"*.zip" 
+".project" 
+"target/" 
+".idea/" 
+"*.iml" 
+"logs/" 

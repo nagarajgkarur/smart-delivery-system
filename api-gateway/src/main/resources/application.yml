@@ -1,0 +1,30 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+  endpoint:
+    gateway:
+      enabled: true
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: customer-service
+          uri: lb://customer-service
+          predicates:
+            - Path=/api/v1/customer/**,/api/v1/deliveryRequest/**
+        - id: delivery-service
+          uri: lb://delivery-service
+          predicates:
+            - Path=/api/v1/delivery/**
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
