@@ -14,9 +14,9 @@ public class Tracking {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private long deliveryId;
-	private boolean status;
-	private String location;
+	private Long deliveryId;
+	private String status;
+	private String currentLocation;
 	private LocalDateTime timestamp;
 	private String remarks;
 	public Long getId() {
@@ -25,23 +25,23 @@ public class Tracking {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public long getDeliveryId() {
+	public Long getDeliveryId() {
 		return deliveryId;
 	}
-	public void setDeliveryId(long deliveryId) {
+	public void setDeliveryId(Long deliveryId) {
 		this.deliveryId = deliveryId;
 	}
-	public boolean isStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getLocation() {
-		return location;
+	public String getCurrentLocation() {
+		return currentLocation;
 	}
-	public void setLocation(String location) {
-		this.location = location;
+	public void setCurrentLocation(String currentLocation) {
+		this.currentLocation = currentLocation;
 	}
 	public LocalDateTime getTimestamp() {
 		return timestamp;
@@ -55,7 +55,6 @@ public class Tracking {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
-	
 	
 	
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sds.tracking_service.domain.Tracking;
 import com.sds.tracking_service.model.TrackingDTO;
+import com.sds.tracking_service.model.TrackingResonseDTO;
 import com.sds.tracking_service.service.TrackingService;
 
 @RestController
@@ -23,29 +24,29 @@ public class TrackingController {
 	TrackingService trackingService;
 	
 	@PostMapping("/tracking")
-	public Tracking createTracking(@RequestBody Tracking tracking) {
-		return trackingService.createTracking(tracking);
+	public TrackingResonseDTO createTracking(@RequestBody TrackingDTO trackingDTO) {
+		return trackingService.createTracking(trackingDTO);
 	}
 	
 	
 	@GetMapping("/tracking/{id}")
-	public Tracking getTracking(@PathVariable Long id) {
+	public TrackingResonseDTO getTracking(@PathVariable Long id) {
 		return trackingService.getTracking(id);
 	}
 	
 	@GetMapping("/tracking")
-	public List<Tracking> getAllTracking(){
+	public List<TrackingResonseDTO> getAllTracking(){
 		return trackingService.getallTracking();
 	}
 	
 	@PostMapping("/tracking/{id}")
-	public Tracking updateTracking(@PathVariable Long id,@RequestBody TrackingDTO trackingDTO) {
+	public TrackingResonseDTO updateTracking(@PathVariable Long id,@RequestBody TrackingDTO trackingDTO) {
 		return trackingService.updateTracking(id,trackingDTO);
 	}
 	
 	@DeleteMapping("/tracking/{id}")
-	public Boolean deleteTracking(@PathVariable Long id) {
-		return trackingService.deleteTracking(id);
+	public void deleteTracking(@PathVariable Long id) {
+		trackingService.deleteTracking(id);
 	}
 	
 }

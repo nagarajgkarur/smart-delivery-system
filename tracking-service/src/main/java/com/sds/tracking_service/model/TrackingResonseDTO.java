@@ -2,13 +2,19 @@ package com.sds.tracking_service.model;
 
 import java.time.LocalDateTime;
 
-public class TrackingDTO {
-
+public class TrackingResonseDTO {
+	private Long id;
 	private Long deliveryId;
 	private String status;
 	private String currentLocation;
 	private LocalDateTime timestamp;
 	private String remarks;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public Long getDeliveryId() {
 		return deliveryId;
 	}
@@ -39,7 +45,5 @@ public class TrackingDTO {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
-	
-	
 	
 }
