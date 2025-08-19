@@ -1,6 +1,26 @@
-"*.zip" 
-".project" 
-"target/" 
-".idea/" 
-"*.iml" 
-"logs/" 
+# Ignore zip files
+*.zip
+
+# Ignore build directories
+target/
+build/
+out/
+
+# Ignore IDE/project files
+.project
+.idea/
+*.iml
+.settings/
+.classpath
+
+# Ignore logs
+logs/
+*.log
+
+# Ignore OS/system files
+.DS_Store
+Thumbs.db
+
+# Ignore temp files
+*.tmp
+*.swp
