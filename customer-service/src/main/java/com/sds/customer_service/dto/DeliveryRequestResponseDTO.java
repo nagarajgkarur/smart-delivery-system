@@ -13,6 +13,20 @@ public class DeliveryRequestResponseDTO {
 	private String dropLocation;
 	private LocalDateTime requestDate;
 	private DeliveryResponseDTO deliveryResponseDTO;
+	private TrackingResonseDTO trackingResonseDTO;
+	private NotificationResponseDTO notificationResponseDTO;
+	public TrackingResonseDTO getTrackingResonseDTO() {
+		return trackingResonseDTO;
+	}
+	public void setTrackingResonseDTO(TrackingResonseDTO trackingResonseDTO) {
+		this.trackingResonseDTO = trackingResonseDTO;
+	}
+	public NotificationResponseDTO getNotificationResponseDTO() {
+		return notificationResponseDTO;
+	}
+	public void setNotificationResponseDTO(NotificationResponseDTO notificationResponseDTO) {
+		this.notificationResponseDTO = notificationResponseDTO;
+	}
 	public Long getId() {
 		return Id;
 	}

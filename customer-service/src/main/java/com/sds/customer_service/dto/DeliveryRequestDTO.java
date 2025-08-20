@@ -3,16 +3,9 @@ package com.sds.customer_service.dto;
 
 public class DeliveryRequestDTO {
 	
-	private Long customerId;
 	private String pickupLocation;
 	private String dropLocation;
 	
-	public Long getCustomerId() {
-		return customerId;
-	}
-	public void setCustomerId(Long customerId) {
-		this.customerId = customerId;
-	}
 	public String getPickupLocation() {
 		return pickupLocation;
 	}

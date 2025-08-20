@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sds.tracking_service.domain.Tracking;
 import com.sds.tracking_service.model.TrackingDTO;
 import com.sds.tracking_service.model.TrackingResonseDTO;
 import com.sds.tracking_service.service.TrackingService;
@@ -25,9 +24,11 @@ public class TrackingController {
 	
 	@PostMapping("/tracking")
 	public TrackingResonseDTO createTracking(@RequestBody TrackingDTO trackingDTO) {
-		return trackingService.createTracking(trackingDTO);
+		 System.out.println("Creating Tracking service");
+		TrackingResonseDTO trackingResonseDTO = trackingService.createTracking(trackingDTO);
+		System.out.println("Creating Tracking service");
+		return trackingResonseDTO;
 	}
-	
 	
 	@GetMapping("/tracking/{id}")
 	public TrackingResonseDTO getTracking(@PathVariable Long id) {

@@ -55,6 +55,7 @@ public class DeliveryUtils {
 		deliveryResponseDTO.setStatus(delivery.isStatus());
 		deliveryResponseDTO.setCreatedAt(delivery.getCreatedAt());
 		deliveryResponseDTO.setDeliveryRequestId(delivery.getDeliveryRequestId());
+		deliveryResponseDTO.setMessage("success");
 		return deliveryResponseDTO;
 	}
 	

@@ -70,4 +70,11 @@ public class Notification {
 	public void setChannel(String channel) {
 		this.channel = channel;
 	}
+	@Override
+	public String toString() {
+		return "Notification [id=" + id + ", deliveryId=" + deliveryId + ", driverId=" + driverId
+				+ ", customerContadct=" + customerContadct + ", message=" + message + ", sentAt=" + sentAt + ", status="
+				+ status + ", channel=" + channel + "]";
+	}
+	
 }

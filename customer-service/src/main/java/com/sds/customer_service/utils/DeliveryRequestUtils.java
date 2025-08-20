@@ -23,7 +23,7 @@ public class DeliveryRequestUtils {
 	@Autowired
 	CustomerRepository customerRepository;
 	
-	public DeliveryRequest getDeliveryRequest(DeliveryRequestDTO deliveryRequestDTO) {
+	public DeliveryRequest getDeliveryRequest(DeliveryRequestDTO deliveryRequestDTO,Long customerId) {
 
 		DeliveryRequest deliveryRequest = new DeliveryRequest();
 		if(!StringUtil.isNullOrEmpty(deliveryRequestDTO.getPickupLocation())) {
@@ -32,8 +32,8 @@ public class DeliveryRequestUtils {
 		if(!StringUtil.isNullOrEmpty(deliveryRequestDTO.getDropLocation())) {
 			deliveryRequest.setDropLocation(deliveryRequestDTO.getDropLocation());
 		}
-		if(deliveryRequestDTO.getCustomerId()!=null) {
-			Customer customer = customerRepository.findById(deliveryRequestDTO.getCustomerId()).get();
+		if(customerId!=null) {
+			Customer customer = customerRepository.findById(customerId).get();
 			deliveryRequest.setCustomer(customer);
 		}
 		return deliveryRequest;

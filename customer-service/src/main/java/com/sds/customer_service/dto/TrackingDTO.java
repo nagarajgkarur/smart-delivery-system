@@ -1,4 +1,4 @@
-package com.sds.tracking_service.model;
+package com.sds.customer_service.dto;
 
 
 public class TrackingDTO {

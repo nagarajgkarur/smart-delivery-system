@@ -25,13 +25,19 @@ public class NotificationController {
 	
 	@PostMapping("/notification")
 	public NotificationResponseDTO sendNotification(@RequestBody NotificationDTO notificationDTO) {
-		return notificationService.sendNotification(notificationDTO);
+		System.out.println("Creating Notification");
+		NotificationResponseDTO notificationResponseDTO = notificationService.sendNotification(notificationDTO);
+		System.out.println("Completed Notification");
+		return  notificationResponseDTO;
 	}
 	
 	
 	@GetMapping("/notification/{id}")
 	public NotificationResponseDTO getNotification(@PathVariable Long id) {
-		return notificationService.getNotification(id);
+		
+		NotificationResponseDTO notificationResponseDTO = notificationService.getNotification(id);
+		
+		return notificationResponseDTO;
 	}
 	
 	@GetMapping("/notification")

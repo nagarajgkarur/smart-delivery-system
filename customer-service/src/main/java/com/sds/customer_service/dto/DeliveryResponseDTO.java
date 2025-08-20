@@ -12,7 +12,14 @@ public class DeliveryResponseDTO {
 	private String droplocation;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
+	private String message;
 	
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
 	public Long getId() {
 		return id;
 	}

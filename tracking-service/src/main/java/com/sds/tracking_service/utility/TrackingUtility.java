@@ -39,9 +39,6 @@ public class TrackingUtility {
 		if(!StringUtil.isNullOrEmpty(trackingDTO.getStatus())) {
 			tracking.setStatus(trackingDTO.getStatus());
 		}
-		if(trackingDTO.getTimestamp() != null) {
-			tracking.setTimestamp(trackingDTO.getTimestamp());
-		}
 		return tracking;
 	}
 

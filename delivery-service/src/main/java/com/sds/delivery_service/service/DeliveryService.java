@@ -21,12 +21,6 @@ public class DeliveryService {
 	DeliveryRepository deliveryRepository;
 	
 	public DeliveryResponseDTO createDelivery(DeliveryDTO deliveryDTO) {
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		Delivery delivery = deliveryUtils.getDeliveryInstance(deliveryDTO,null);
 		delivery = deliveryRepository.save(delivery);
 		DeliveryResponseDTO deliveryResponseDTO = deliveryUtils.getDeliveryResponseInstance(delivery);

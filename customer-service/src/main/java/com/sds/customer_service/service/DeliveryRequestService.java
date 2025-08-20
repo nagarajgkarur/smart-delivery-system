@@ -14,6 +14,11 @@ import com.sds.customer_service.dto.DeliveryDTO;
 import com.sds.customer_service.dto.DeliveryRequestDTO;
 import com.sds.customer_service.dto.DeliveryRequestResponseDTO;
 import com.sds.customer_service.dto.DeliveryResponseDTO;
+import com.sds.customer_service.dto.DriverDeliveryDTO;
+import com.sds.customer_service.dto.NotificationDTO;
+import com.sds.customer_service.dto.NotificationResponseDTO;
+import com.sds.customer_service.dto.TrackingDTO;
+import com.sds.customer_service.dto.TrackingResonseDTO;
 import com.sds.customer_service.repository.CustomerRepository;
 import com.sds.customer_service.repository.DeliveryRequestRepository;
 import com.sds.customer_service.utils.DeliveryRequestUtils;
@@ -40,11 +45,13 @@ public class DeliveryRequestService {
 	RestTemplate restTemplate;
 	
 	@Value("${delivery.service.url}")
-    private String deliveryServiceUrl;
+    private String gatewayUrl;
 	
-	public DeliveryRequestResponseDTO createDeliveryRequest(DeliveryRequestDTO deliveryRequestDTO) {
-		DeliveryRequest deliveryRequest = deliveryRequestUtils.getDeliveryRequest(deliveryRequestDTO);
+	public DeliveryRequestResponseDTO createDeliveryRequest(DeliveryRequestDTO deliveryRequestDTO,Long customerId) {
+		System.out.println("Creating Delivery Request");
+		DeliveryRequest deliveryRequest = deliveryRequestUtils.getDeliveryRequest(deliveryRequestDTO,customerId);
 		deliveryRequest = deliveryRequestRepository.save(deliveryRequest);
+		System.out.println("Completed Delivery Request");
 		// Call Delivery service
 		DeliveryRequestResponseDTO deliveryRequestResponseDTO = createDelivery(deliveryRequest);
 		return deliveryRequestResponseDTO;
@@ -56,8 +63,23 @@ public class DeliveryRequestService {
     @TimeLimiter(name = "deliveryServiceTimeout")
 	private DeliveryRequestResponseDTO createDelivery(DeliveryRequest deliveryRequest) {
 		DeliveryDTO deliveryDTO = deliveryRequestUtils.getDeliveryDTO(deliveryRequest);
-		DeliveryResponseDTO deliveryResponseDTO = restTemplate.postForObject(deliveryServiceUrl+"/api/v1/delivery", deliveryDTO, DeliveryResponseDTO.class);
 		DeliveryRequestResponseDTO deliveryRequestResponseDTO = deliveryRequestUtils.getDeliveryRequestResponseDTO(deliveryRequest);
+		DeliveryResponseDTO deliveryResponseDTO = restTemplate.postForObject(gatewayUrl+"/api/v1/delivery", deliveryDTO, DeliveryResponseDTO.class);
+		if(deliveryResponseDTO.getMessage().equals("success")) {
+			TrackingDTO trackingDTO = new TrackingDTO();
+			trackingDTO.setDeliveryId(deliveryRequest.getId());
+			trackingDTO.setCurrentLocation("BTM");
+			trackingDTO.setStatus("IN_PROGRESS");
+			trackingDTO.setRemarks("Delivery request created");
+			TrackingResonseDTO trackingResonseDTO = restTemplate.postForObject(gatewayUrl+"/api/v1/tracking", trackingDTO, TrackingResonseDTO.class);
+			deliveryRequestResponseDTO.setTrackingResonseDTO(trackingResonseDTO);
+			NotificationDTO notificationDTO = new NotificationDTO();
+			notificationDTO.setDeliveryId(deliveryDTO.getDeliveryRequestId());
+			notificationDTO.setMessage("Delivery Created");
+			NotificationResponseDTO notificationResponseDTO = restTemplate.postForObject(gatewayUrl+"/api/v1/notification", notificationDTO, NotificationResponseDTO.class);
+			deliveryRequestResponseDTO.setNotificationResponseDTO(notificationResponseDTO);
+		}
+		
 		deliveryRequestResponseDTO.setDeliveryResponseDTO(deliveryResponseDTO);
 		return deliveryRequestResponseDTO;
 	}
@@ -87,9 +109,9 @@ public class DeliveryRequestService {
 		return deliveryRequestUtils.getAllDeliveryRequestResponseDTO(deliveryRequests);
 	}
 
-	public DeliveryRequestResponseDTO updateDeliveryRequest(Long id, DeliveryRequestDTO deliveryRequestDTO) {
+	public DeliveryRequestResponseDTO updateDeliveryRequest(Long id, DeliveryRequestDTO deliveryRequestDTO,Long customerId) {
 		DeliveryRequest deliveryRequest = deliveryRequestRepository.findById(id).get();
-		Customer customer =  customerRepository.findById(deliveryRequestDTO.getCustomerId()).get();
+		Customer customer =  customerRepository.findById(customerId).get();
 		if(StringUtils.isNotBlank(deliveryRequestDTO.getDropLocation())) {
 			deliveryRequest.setDropLocation(deliveryRequestDTO.getDropLocation());
 		}

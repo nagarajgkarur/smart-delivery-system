@@ -24,7 +24,6 @@ public class NotificationService {
 
 	public NotificationResponseDTO sendNotification(NotificationDTO notificationDTO) {
 		Notification notification = notificationUtility.getNotificationInstance(notificationDTO);
-		notification = notificationRepository.save(notification);
 		boolean success = new Random().nextBoolean(); // true or false
 		if (success) {
 		    notification.setStatus("SUCCESS");
@@ -33,6 +32,7 @@ public class NotificationService {
 		    notification.setStatus("FAILED");
 		    notification.setSentAt(OffsetDateTime.now());
 		}
+		notification = notificationRepository.save(notification);
 		return notificationUtility.getNotificationResponseInstance(notification);
 	}
 

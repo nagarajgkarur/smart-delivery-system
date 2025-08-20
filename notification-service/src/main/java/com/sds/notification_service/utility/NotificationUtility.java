@@ -32,9 +32,6 @@ public class NotificationUtility {
 		if(!StringUtil.isNullOrEmpty(notification.getMessage())) {
 			notification.setMessage(notificationDTO.getMessage());
 		}
-		if(notificationDTO.getSentAt() != null) {
-			notification.setSentAt(notificationDTO.getSentAt());
-		}
 		return notification;
 	}
 	

@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import com.sds.customer_service.dto.DeliveryRequestDTO;
 import com.sds.customer_service.dto.DeliveryRequestResponseDTO;
@@ -29,9 +29,9 @@ public class DeliveryRequestController {
 		return deliveryRequestService.getDeliveryRequest(id);
 	}
 	
-	@PostMapping("/deliveryRequest")
-	public DeliveryRequestResponseDTO createDeliveryRequest(@RequestBody DeliveryRequestDTO deliveryRequestDTO) {
-		return deliveryRequestService.createDeliveryRequest(deliveryRequestDTO);
+	@PostMapping("/customer/{customerId}/deliveryRequest")
+	public DeliveryRequestResponseDTO createDeliveryRequest(@RequestBody DeliveryRequestDTO deliveryRequestDTO,@PathVariable Long customerId) {
+		return deliveryRequestService.createDeliveryRequest(deliveryRequestDTO,customerId);
 	}
 	
 	@GetMapping("/deliveryRequest")
@@ -39,9 +39,9 @@ public class DeliveryRequestController {
 		return deliveryRequestService.getAllDeliveryRequest();
 	}
 	
-	@PostMapping("/deliveryRequest/{id}")
-	public DeliveryRequestResponseDTO updatqeDeliveryRequest(@PathVariable Long id, @RequestBody  DeliveryRequestDTO deliveryRequestDTO) {
-		return deliveryRequestService.updateDeliveryRequest(id, deliveryRequestDTO);
+	@PutMapping("/customer/{customerId}/deliveryRequest/{deliveryRequestId}")
+	public DeliveryRequestResponseDTO updatqeDeliveryRequest(@PathVariable Long deliveryRequestId,@PathVariable Long customerId, @RequestBody  DeliveryRequestDTO deliveryRequestDTO) {
+		return deliveryRequestService.updateDeliveryRequest(deliveryRequestId, deliveryRequestDTO,customerId);
 	}
 	
 	@DeleteMapping("/deliveryRequest/{id}")

@@ -25,7 +25,10 @@ public class DeliveryController {
 	
 	@PostMapping("/delivery")
 	public DeliveryResponseDTO createDelivery(@RequestBody DeliveryDTO deliveryDTO) {
-		return deliveryService.createDelivery(deliveryDTO);
+		System.out.println("Creating Delivery.....");
+		DeliveryResponseDTO deliveryResponseDTO = deliveryService.createDelivery(deliveryDTO);
+		System.out.println("Completed Delivery.....");
+		return deliveryResponseDTO;
 	}
 	
 	@GetMapping("/delivery/{id}")
