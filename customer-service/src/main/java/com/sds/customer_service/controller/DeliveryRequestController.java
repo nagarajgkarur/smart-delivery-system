@@ -16,6 +16,8 @@ import com.sds.customer_service.dto.DeliveryRequestDTO;
 import com.sds.customer_service.dto.DeliveryRequestResponseDTO;
 import com.sds.customer_service.service.DeliveryRequestService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(path="/api/v1")
 public class DeliveryRequestController {
@@ -30,7 +32,7 @@ public class DeliveryRequestController {
 	}
 	
 	@PostMapping("/customer/{customerId}/deliveryRequest")
-	public DeliveryRequestResponseDTO createDeliveryRequest(@RequestBody DeliveryRequestDTO deliveryRequestDTO,@PathVariable Long customerId) {
+	public DeliveryRequestResponseDTO createDeliveryRequest(@Valid @RequestBody DeliveryRequestDTO deliveryRequestDTO,@PathVariable Long customerId) {
 		return deliveryRequestService.createDeliveryRequest(deliveryRequestDTO,customerId);
 	}
 	

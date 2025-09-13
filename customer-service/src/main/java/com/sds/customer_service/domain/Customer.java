@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,8 +16,11 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long Id;
+	@Column(name = "name",nullable = false,length = 200)
 	private String name;
-	private Number contactNumber;
+	@Column(nullable = false,unique = true)
+	private String contactNumber;
+	@Column(nullable = false, unique = true)
 	private String email;
 	private LocalDateTime createdAt;
 	
@@ -34,10 +38,10 @@ public class Customer {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Number getContactNumber() {
+	public String getContactNumber() {
 		return contactNumber;
 	}
-	public void setContactNumber(Number contactNumber) {
+	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 	public String getEmail() {

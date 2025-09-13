@@ -29,7 +29,7 @@ public class NotificationUtility {
 		if(notificationDTO.getCustomerContadct() !=null) {
 			notification.setCustomerContadct(notificationDTO.getCustomerContadct());
 		}
-		if(!StringUtil.isNullOrEmpty(notification.getMessage())) {
+		if(!StringUtil.isNullOrEmpty(notificationDTO.getMessage())) {
 			notification.setMessage(notificationDTO.getMessage());
 		}
 		return notification;

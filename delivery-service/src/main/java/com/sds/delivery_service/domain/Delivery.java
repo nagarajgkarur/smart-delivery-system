@@ -15,11 +15,14 @@ public class Delivery {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(nullable = false)
 	private boolean status;
-	@Column(nullable = true)
 	private Long driverId;
+	@Column(nullable = false)
 	private Long deliveryRequestId;
+	@Column(nullable = false)
 	private String pickuplocation;
+	@Column(nullable = false)
 	private String droplocation;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;

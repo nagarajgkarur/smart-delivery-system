@@ -23,6 +23,7 @@ public class NotificationService {
 	NotificationRepository notificationRepository;
 
 	public NotificationResponseDTO sendNotification(NotificationDTO notificationDTO) {
+		System.out.println("notificationDTO :: "+notificationDTO);
 		Notification notification = notificationUtility.getNotificationInstance(notificationDTO);
 		boolean success = new Random().nextBoolean(); // true or false
 		if (success) {
@@ -32,6 +33,7 @@ public class NotificationService {
 		    notification.setStatus("FAILED");
 		    notification.setSentAt(OffsetDateTime.now());
 		}
+		System.out.println(notification);
 		notification = notificationRepository.save(notification);
 		return notificationUtility.getNotificationResponseInstance(notification);
 	}

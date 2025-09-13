@@ -10,7 +10,7 @@ public class NotificationResponseDTO {
 	private Long id;
 	private Long deliveryId;
 	private Long driverId;
-	private Number customerContadct;
+	private String customerContact;
 	private String 	message;
 	private OffsetDateTime sentAt;
 	private String channel;
@@ -25,8 +25,8 @@ public class NotificationResponseDTO {
 	public Long getDriverId() {
 		return driverId;
 	}
-	public Number getCustomerContadct() {
-		return customerContadct;
+	public String getCustomerContadct() {
+		return customerContact;
 	}
 	public String getMessage() {
 		return message;
@@ -49,8 +49,8 @@ public class NotificationResponseDTO {
 	public void setDriverId(Long driverId) {
 		this.driverId = driverId;
 	}
-	public void setCustomerContadct(Number customerContadct) {
-		this.customerContadct = customerContadct;
+	public void setCustomerContadct(String customerContact) {
+		this.customerContact = customerContact;
 	}
 	public void setMessage(String message) {
 		this.message = message;

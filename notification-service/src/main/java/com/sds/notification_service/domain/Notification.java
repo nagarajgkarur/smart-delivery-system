@@ -14,13 +14,17 @@ public class Notification {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(nullable = false)
 	private Long deliveryId;
 	private Long driverId;
-	private Number customerContadct;
-	private String 	message;
 	@Column(nullable = false)
+	private String customerContact;
+	@Column(nullable = false)
+	private String 	message;
 	private OffsetDateTime sentAt;
+	@Column(nullable = false)
 	private String status;
+	@Column(nullable = false)
 	private String channel;
 	public Long getId() {
 		return id;
@@ -40,11 +44,11 @@ public class Notification {
 	public void setDriverId(Long driverId) {
 		this.driverId = driverId;
 	}
-	public Number getCustomerContadct() {
-		return customerContadct;
+	public String getCustomerContadct() {
+		return customerContact;
 	}
-	public void setCustomerContadct(Number customerContadct) {
-		this.customerContadct = customerContadct;
+	public void setCustomerContadct(String customerContact) {
+		this.customerContact = customerContact;
 	}
 	public String getMessage() {
 		return message;
@@ -73,7 +77,7 @@ public class Notification {
 	@Override
 	public String toString() {
 		return "Notification [id=" + id + ", deliveryId=" + deliveryId + ", driverId=" + driverId
-				+ ", customerContadct=" + customerContadct + ", message=" + message + ", sentAt=" + sentAt + ", status="
+				+ ", customerContadct=" + customerContact + ", message=" + message + ", sentAt=" + sentAt + ", status="
 				+ status + ", channel=" + channel + "]";
 	}
 	

@@ -16,6 +16,8 @@ import com.sds.delivery_service.model.DeliveryDTO;
 import com.sds.delivery_service.model.DeliveryResponseDTO;
 import com.sds.delivery_service.service.DeliveryService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping(path = "/api/v1")
 public class DeliveryController {
@@ -24,7 +26,7 @@ public class DeliveryController {
 	DeliveryService deliveryService;
 	
 	@PostMapping("/delivery")
-	public DeliveryResponseDTO createDelivery(@RequestBody DeliveryDTO deliveryDTO) {
+	public DeliveryResponseDTO createDelivery(@Valid @RequestBody DeliveryDTO deliveryDTO) {
 		System.out.println("Creating Delivery.....");
 		DeliveryResponseDTO deliveryResponseDTO = deliveryService.createDelivery(deliveryDTO);
 		System.out.println("Completed Delivery.....");

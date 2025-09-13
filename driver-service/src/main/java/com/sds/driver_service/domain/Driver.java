@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,8 +17,11 @@ public class Driver {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private Number contactNumber;
+	@Column(nullable = false)
+	private String contactNumber;
+	@Column(nullable = false)
 	private String name;
+	@Column(nullable = false)
 	private String vehicleNumber;
 	private Date registeredAt;
 	
@@ -29,10 +33,10 @@ public class Driver {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Number getContactNumber() {
+	public String getContactNumber() {
 		return contactNumber;
 	}
-	public void setContactNumber(Number contactNumber) {
+	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 	public String getName() {

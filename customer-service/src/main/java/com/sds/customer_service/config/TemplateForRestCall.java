@@ -13,7 +13,7 @@ public class TemplateForRestCall {
 	@LoadBalanced
 	public RestTemplate getRestTemplate() {
 		HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
-        factory.setConnectTimeout(2000); // 2s connect timeout
-        factory.setReadTimeout(2000);    // 2s read timeout
+      //  factory.setConnectTimeout(2000); // 2s connect timeout
+        //factory.setReadTimeout(2000);    // 2s read timeout
         return new RestTemplate(factory);	}
 }

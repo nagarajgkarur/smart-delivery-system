@@ -9,7 +9,7 @@ public class CustomerResponseDTO {
 	
 	private Long id;
     private String name;
-    private Number contactNumber;
+    private String contactNumber;
     private String email;
     private LocalDateTime createdAt;
 	public Long getId() {
@@ -24,10 +24,10 @@ public class CustomerResponseDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Number getContactNumber() {
+	public String getContactNumber() {
 		return contactNumber;
 	}
-	public void setContactNumber(Number contactNumber) {
+	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 	public String getEmail() {

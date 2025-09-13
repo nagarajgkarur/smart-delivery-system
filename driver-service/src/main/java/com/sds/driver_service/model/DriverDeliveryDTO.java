@@ -1,9 +1,12 @@
 package com.sds.driver_service.model;
 
+import jakarta.validation.constraints.NotNull;
 
 public class DriverDeliveryDTO {
 
+	@NotNull(message = "driverId is required")
 	private Long driverId;
+	@NotNull(message="deliveryId is required")
 	private Long deliveryId;
 	public Long getDriverId() {
 		return driverId;

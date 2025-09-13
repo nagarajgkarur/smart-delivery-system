@@ -9,14 +9,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class DriverResponseDTO {
 	
 	private Long id;
-	private Number contactNumber;
+	private String contactNumber;
 	private String name;
 	private String vehicleNumber;
 	private Date registeredAt;
 	public Long getId() {
 		return id;
 	}
-	public Number getContactNumber() {
+	public String getContactNumber() {
 		return contactNumber;
 	}
 	public String getName() {
@@ -31,7 +31,7 @@ public class DriverResponseDTO {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public void setContactNumber(Number contactNumber) {
+	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 	public void setName(String name) {

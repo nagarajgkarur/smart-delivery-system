@@ -2,10 +2,15 @@ package com.sds.customer_service.utils;
 
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import com.sds.customer_service.domain.Customer;
@@ -13,6 +18,7 @@ import com.sds.customer_service.domain.DeliveryRequest;
 import com.sds.customer_service.dto.DeliveryDTO;
 import com.sds.customer_service.dto.DeliveryRequestDTO;
 import com.sds.customer_service.dto.DeliveryRequestResponseDTO;
+import com.sds.customer_service.exception.CustomerNotFoundExcetption;
 import com.sds.customer_service.repository.CustomerRepository;
 
 import ch.qos.logback.core.util.StringUtil;
@@ -33,8 +39,13 @@ public class DeliveryRequestUtils {
 			deliveryRequest.setDropLocation(deliveryRequestDTO.getDropLocation());
 		}
 		if(customerId!=null) {
-			Customer customer = customerRepository.findById(customerId).get();
-			deliveryRequest.setCustomer(customer);
+			Optional<Customer> customer = customerRepository.findById(customerId);
+			if(customer.isEmpty()) {
+				Map<String, String> params = new HashMap<String, String>();
+				params.put("customerId", "Invalid customer Id");
+				throw new CustomerNotFoundExcetption(params);
+			}
+			deliveryRequest.setCustomer(customer.get());
 		}
 		return deliveryRequest;
 

@@ -3,6 +3,7 @@ package com.sds.customer_service.domain;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,19 +16,22 @@ public class DeliveryRequest {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long Id;
-	@ManyToOne
+	private Long id;
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "customer_id",nullable = false)
 	private Customer customer;
+	
+	@Column(nullable = false,length = 255)
 	private String pickupLocation;
+	@Column(nullable = false,length = 255)
 	private String dropLocation;
 	private LocalDateTime requestDate;
 	
 	public Long getId() {
-		return Id;
+		return id;
 	}
 	public void setId(Long id) {
-		Id = id;
+		id = id;
 	}
 	
 	public Customer getCustomer() {

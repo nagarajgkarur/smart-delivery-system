@@ -2,6 +2,7 @@ package com.sds.driver_service.domain;
 
 import java.sql.Date;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +19,7 @@ public class DriverDelivery {
 	@ManyToOne
 	@JoinColumn(name = "driver_id",nullable = false)
 	private Driver driver;
+	@Column(nullable = false)
 	private Long deliveryId;
 	private Date acceptedAt;
 	public Long getId() {

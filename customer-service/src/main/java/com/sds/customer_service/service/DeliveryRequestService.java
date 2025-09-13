@@ -47,6 +47,7 @@ public class DeliveryRequestService {
 	@Value("${delivery.service.url}")
     private String gatewayUrl;
 	
+	@Transactional
 	public DeliveryRequestResponseDTO createDeliveryRequest(DeliveryRequestDTO deliveryRequestDTO,Long customerId) {
 		System.out.println("Creating Delivery Request");
 		DeliveryRequest deliveryRequest = deliveryRequestUtils.getDeliveryRequest(deliveryRequestDTO,customerId);
@@ -76,6 +77,9 @@ public class DeliveryRequestService {
 			NotificationDTO notificationDTO = new NotificationDTO();
 			notificationDTO.setDeliveryId(deliveryDTO.getDeliveryRequestId());
 			notificationDTO.setMessage("Delivery Created");
+			notificationDTO.setChannel("whatsapp");
+			notificationDTO.setCustomerContadct(deliveryRequest.getCustomer().getContactNumber());
+			notificationDTO.setStatus("Inprogress");
 			NotificationResponseDTO notificationResponseDTO = restTemplate.postForObject(gatewayUrl+"/api/v1/notification", notificationDTO, NotificationResponseDTO.class);
 			deliveryRequestResponseDTO.setNotificationResponseDTO(notificationResponseDTO);
 		}
